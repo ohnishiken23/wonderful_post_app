@@ -34,5 +34,15 @@ module WonderfulPostApp
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    # Task.5-2 application.rbの設定 20240204 Ohnishi
+    config.generators do |g|
+      g.jbuilder false
+      g.javascripts false
+      g.stylesheets false
+      g.helper false
+      g.test_framework false
+    end
+    #***********************************************
   end
 end
