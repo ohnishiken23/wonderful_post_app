@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update]
+  before_action :set_article, only: %i[show edit update destroy]
 
   def index
     # Task.7-3 レコードの取得 20240205 Ohnishi
@@ -51,16 +51,11 @@ class ArticlesController < ApplicationController
   end
   #**********************************************
 
-  # Task.7-3 deleteメソッドの作成 20240205 Ohnishi
-  # def destroy
-    # 対象のレコードを探す
-    # @article = Article.find(params[:id])
-
-    # 探して来たレコードを削除する
-    # @article.destroy!
-
-    # 値を返す 今回はviewsで返す？
-  # end
+  # Task.7-5 deleteメソッドの作成 20240208 Ohnishi
+  def destroy
+    @article.destroy
+    redirect_to articles_url, notice: "Article was successfully destroyed."
+  end
   #**********************************************
 
   private
