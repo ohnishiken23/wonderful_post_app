@@ -1,4 +1,6 @@
 class ArticlesController < ApplicationController
+  before_action :set_article, only: %i[show edit update]
+
   def index
     # Task.7-3 レコードの取得 20240205 Ohnishi
     @articles = Article.all
@@ -7,7 +9,7 @@ class ArticlesController < ApplicationController
 
   # Task.7-3 showメソッドの作成 20240205 Ohnishi
   def show
-    @article = Article.find(params[:id])
+    # @article = Article.find(params[:id])
   end
   #*******************************************
 
@@ -16,6 +18,11 @@ class ArticlesController < ApplicationController
     @article = Article.new
   end
   #******************************************
+
+  # Task.7-4 editメソッドの作成 20240207 Ohnishi
+  def edit
+  end
+  #*******************************************
 
   # Task.7-3 createメソッドの作成 20240205 Ohnishi
   def create
@@ -33,16 +40,15 @@ class ArticlesController < ApplicationController
   end
   #**********************************************
 
-  # Task.7-3 updateメソッドの作成 20240205 Ohnishi
-  # def update
-    # 対象のレコードを探す
-    # @article = Article.find(params[:id])
 
-    # 探して来たレコードに対して変更を行う
-    # @article.update!(article_params)
-
-    # 値を返す 今回はviewsで返す？
-  # end
+  # Task.7-4 updateメソッドの作成 20240207 Ohnishi
+  def update
+    if @article.update(article_params)
+      redirect_to @article, notice: "Article was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
   #**********************************************
 
   # Task.7-3 deleteメソッドの作成 20240205 Ohnishi
