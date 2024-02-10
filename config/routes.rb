@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # Task.7-3 20240206 Ohnishi
   root to: 'articles#index'
   #**************************
