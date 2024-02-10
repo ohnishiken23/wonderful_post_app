@@ -35,6 +35,13 @@ module WonderfulPostApp
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    # Task.8 20240208 Ohnishi
+    config.time_zone = 'Tokyo'
+    # config.active_record.default_timezone = :local
+    config.i18n.default_locale = :ja
+    # config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
+    #*************************
+
     # Task.5-2 application.rbの設定 20240204 Ohnishi
     config.generators do |g|
       g.jbuilder false

@@ -29,7 +29,8 @@ class ArticlesController < ApplicationController
     # インスタンス変数をmodelから作成する
     @article = Article.new(article_params)
     if @article.save
-      redirect_to @article, notice: "Article was successfully created."
+      # redirect_to @article, notice: "Article was successfully created."
+      redirect_to @article, notice: "記事が作成されました。"
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,7 +45,8 @@ class ArticlesController < ApplicationController
   # Task.7-4 updateメソッドの作成 20240207 Ohnishi
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: "Article was successfully updated."
+      # redirect_to @article, notice: "Article was successfully updated."
+      redirect_to @article, notice: "記事が更新されました。"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -54,7 +56,8 @@ class ArticlesController < ApplicationController
   # Task.7-5 deleteメソッドの作成 20240208 Ohnishi
   def destroy
     @article.destroy
-    redirect_to articles_url, notice: "Article was successfully destroyed."
+    # redirect_to articles_url, notice: "Article was successfully destroyed."
+    redirect_to articles_url, notice: "記事が削除されました。"
   end
   #**********************************************
 
