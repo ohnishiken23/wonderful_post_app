@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_article, only: %i[edit update destroy]
 
   def index
     # Task.7-3 レコードの取得 20240205 Ohnishi
@@ -9,7 +10,7 @@ class ArticlesController < ApplicationController
 
   # Task.7-3 showメソッドの作成 20240205 Ohnishi
   def show
-    # @article = Article.find(params[:id])
+    @article = Article.find(params[:id])
   end
   #*******************************************
 
@@ -27,7 +28,7 @@ class ArticlesController < ApplicationController
   # Task.7-3 createメソッドの作成 20240205 Ohnishi
   def create
     # インスタンス変数をmodelから作成する
-    @article = Article.new(article_params)
+    @article = current_user.articles.new(article_params)
     if @article.save
       # redirect_to @article, notice: "Article was successfully created."
       redirect_to @article, notice: "記事が作成されました。"
@@ -63,7 +64,7 @@ class ArticlesController < ApplicationController
 
   private
     def set_article
-      @article = Article.find(params[:id])
+      @article = current_user.articles.find(params[:id])
     end
 
     def article_params
