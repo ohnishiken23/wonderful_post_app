@@ -4,7 +4,9 @@ class ArticlesController < ApplicationController
 
   def index
     # Task.7-3 レコードの取得 20240205 Ohnishi
-    @articles = Article.all.page params[:page]
+    articles = Article.all
+    articles = articles.where('title LIKE(?)', "%#{params[:title]}")
+    @articles = articles.page params[:page]
     #***************************************
   end
 
