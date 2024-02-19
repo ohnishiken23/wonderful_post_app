@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
 
   def index
     # Task.7-3 レコードの取得 20240205 Ohnishi
-    @articles = Article.all
+    @articles = Article.all.page params[:page]
     #***************************************
   end
 
